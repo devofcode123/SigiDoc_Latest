@@ -18,3 +18,11 @@ jobs:
           repository:  devofcode123/sigidoc_latest/sigidoc
           tag_with_ref: true
           dockerfile: SigiDoc_EFES_LATEST_in progress/EFES-master/Dockerfile
+  deploy:
+    name: Deploy image
+    runs-on: self-hosted
+    steps:
+      - name: Pull image
+        run: docker pull docker.pkg.github.com/devofcode123/sigidoc_latest/sigidoc:latest
+      - name: Run image
+        run: docker run -it -p 9000:9999 --rm --name sigidoc docker.pkg.github.com/devofcode123/sigidoc_latest/sigidoc:latest
